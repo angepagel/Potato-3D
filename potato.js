@@ -1,9 +1,25 @@
 
-let scene = new THREE.Scene();
-let camera = new THREE.PerspectiveCamera(100, window.innerWidth/window.innerHeight, 0.1, 1000);
-let renderer = new THREE.WebGLRenderer();
+let renderer, scene, camera;
 
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+init();
+animate();
 
-renderer.render(scene, camera);
+function init() {
+
+    /* Renderer */
+    renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    /* Scene */
+    scene = new THREE.Scene();
+    
+    /* Camera */
+    camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.01, 1000);
+
+}
+
+function animate() {
+    renderer.render(scene, camera);
+}
