@@ -24,6 +24,12 @@ function init() {
     /* Ambient Light */
     scene.add(new THREE.AmbientLight(0xfffff, 0.6));
 
+    let cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+    let cubeMaterial = new THREE.MeshPhongMaterial({color: 0x00ff00});
+    let cubeMesh     = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cubeMesh.position.y = 1;
+    scene.add(cubeMesh);
+
     let floorGeometry = new THREE.BoxGeometry(100, 1, 100);
     let floorMaterial = new THREE.MeshPhongMaterial({color: 0x0000ff});
     let floorMesh     = new THREE.Mesh(floorGeometry, floorMaterial);
