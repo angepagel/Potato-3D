@@ -20,9 +20,14 @@ function init() {
     camera.position.z = 5;
     camera.position.y = 2;
     camera.rotation.x = -0.2;
-    
+
     /* Ambient Light */
     scene.add(new THREE.AmbientLight(0xfffff, 0.6));
+
+    let floorGeometry = new THREE.BoxGeometry(100, 1, 100);
+    let floorMaterial = new THREE.MeshPhongMaterial({color: 0x0000ff});
+    let floorMesh     = new THREE.Mesh(floorGeometry, floorMaterial);
+    scene.add(floorMesh)
 
 }
 
