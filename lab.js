@@ -17,7 +17,10 @@ function init() {
     
     /* Camera */
     camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.01, 1000);
-
+    camera.position.z = 5;
+    camera.position.y = 2;
+    camera.rotation.x = -0.2;
+    
     /* Ambient Light */
     scene.add(new THREE.AmbientLight(0xfffff, 0.6));
 
