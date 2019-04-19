@@ -24,6 +24,13 @@ function init() {
     /* Ambient Light */
     scene.add(new THREE.AmbientLight(0xfffff, 0.6));
 
+    /* Spot Light */
+    spotLight = new THREE.SpotLight(0xffffff, 1);
+    spotLight.castShadow = true;
+    spotLight.position.y = 3;
+    spotLight.position.z = 5;
+    scene.add(spotLight)
+
     let cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
     let cubeMaterial = new THREE.MeshPhongMaterial({color: 0x00ff00});
     let cubeMesh     = new THREE.Mesh(cubeGeometry, cubeMaterial);
