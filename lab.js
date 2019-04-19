@@ -1,5 +1,8 @@
 
 let renderer, scene, camera;
+let ambientLight, spotLight;
+let cubeGeometry, cubeMaterial, cubeMesh;
+let floorGeometry, floorMaterial, floorMesh;
 
 init();
 animate();
@@ -21,29 +24,39 @@ function init() {
     camera.position.y = 2;
     camera.rotation.x = -0.2;
 
-    /* Ambient Light */
-    scene.add(new THREE.AmbientLight(0xfffff, 0.6));
+    /* White ambient Light */
+    ambientLight = new THREE.AmbientLight(0xfffff, 0.6);
+    scene.add(ambientLight);
 
-    /* Spot Light */
+    /* White spotlight */
     spotLight = new THREE.SpotLight(0xffffff, 1);
     spotLight.castShadow = true;
     spotLight.position.y = 3;
     spotLight.position.z = 5;
-    scene.add(spotLight)
+    scene.add(spotLight);
 
-    let cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-    let cubeMaterial = new THREE.MeshPhongMaterial({color: 0x00ff00});
-    let cubeMesh     = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    /* Green cube */
+    cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+    cubeMaterial = new THREE.MeshPhongMaterial({color: 0x00ff00});
+    cubeMesh     = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cubeMesh.position.y = 1;
     scene.add(cubeMesh);
 
-    let floorGeometry = new THREE.BoxGeometry(100, 1, 100);
-    let floorMaterial = new THREE.MeshPhongMaterial({color: 0x0000ff});
-    let floorMesh     = new THREE.Mesh(floorGeometry, floorMaterial);
-    scene.add(floorMesh)
+    /* Blue floor */
+    floorGeometry = new THREE.BoxGeometry(100, 1, 100);
+    floorMaterial = new THREE.MeshPhongMaterial({color: 0x0000ff});
+    floorMesh     = new THREE.Mesh(floorGeometry, floorMaterial);
+    scene.add(floorMesh);
 
 }
 
 function animate() {
+    requestAnimationFrame(animate);
+    render();
+}
+
+function render() {
+    cubeMesh.rotation.y += 0.01;
+
     renderer.render(scene, camera);
 }
