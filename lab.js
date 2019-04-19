@@ -22,7 +22,7 @@ function init() {
     camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.01, 1000);
     camera.position.z = 5;
     camera.position.y = 2;
-    camera.rotation.x = -0.2;
+    camera.rotation.x = -0.1;
 
     /* White ambient Light */
     ambientLight = new THREE.AmbientLight(0xfffff, 0.6);
@@ -42,6 +42,18 @@ function init() {
     cubeMesh.position.y = 1;
     scene.add(cubeMesh);
 
+    /* White wireframe sphere */
+    sphereGeometry = new THREE.SphereGeometry (2, 1, 1);
+    sphereMaterial = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        wireframe: true
+    });
+    sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    sphereMesh.position.x = 3;
+    sphereMesh.position.y = 3;
+    sphereMesh.position.z = -10;
+    scene.add(sphereMesh);
+
     /* Blue floor */
     floorGeometry = new THREE.BoxGeometry(100, 1, 100);
     floorMaterial = new THREE.MeshPhongMaterial({color: 0x0000ff});
@@ -57,6 +69,8 @@ function animate() {
 
 function render() {
     cubeMesh.rotation.y += 0.01;
+    sphereMesh.rotation.y += 0.01;
+    sphereMesh.rotation.z += 0.01;
 
     renderer.render(scene, camera);
 }
